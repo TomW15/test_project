@@ -33,22 +33,18 @@ rem Parse command line arguments
 :parse_args
 if "%1" == "" goto end_args
 if /i "%1" == "--project" (
-    echo Setting PROJECT_NAME to %2
     set PROJECT_NAME=%2
     shift
     shift
 ) else if /i "%1" == "-P" (
-    echo Setting PROJECT_NAME to %2
     set PROJECT_NAME=%2
     shift
     shift
 ) else if /i "%1" == "--repo" (
-    echo Setting REPO_NAME to %2
     set REPO_NAME=%2
     shift
     shift
 ) else if /i "%1" == "-R" (
-    echo Setting REPO_NAME to %2
     set REPO_NAME=%2
     shift
     shift
@@ -70,8 +66,7 @@ if "%PROJECT_NAME%" == "" (
 )
 
 if "%REPO_NAME%" == "" (
-    echo Error: Please provide a repository name using --repo or -R.
-    exit /b 1
+    set REPO_NAME=%PROJECT_NAME%
 )
 
 set REPO_URL=https://github.com/%GITHUB_USERNAME%/%REPO_NAME%.git
